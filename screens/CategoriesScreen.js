@@ -6,7 +6,9 @@ import { CategoryGridTile } from '../components/CategoryGridTile';
 export const CategoriesScreen = ({navigation}) => {
   function renderCategoryItem (itemData){
     function pressHandler(){
-      navigation.navigate('mealsOverView')
+      navigation.navigate('Overview',{
+        categoryId: itemData.item.id
+      })
     }
       return <CategoryGridTile title={itemData.item.title}
       color={itemData.item.color} 

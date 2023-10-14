@@ -1,10 +1,11 @@
 import {View, Text, StyleSheet} from 'react-native'
 
 import { MEALS } from '../data/dummy-data'
-export const MealsOverViewScreen = () => {
+export const MealsOverViewScreen = ({route}) => {
+    const catId = route.params.categoryId
   return (
     <View style={styles.container}>
-        <Text>MealsOverViewScreen</Text>
+        <Text>MealsOverViewScreen - {catId}</Text>
     </View>
   )
 }
