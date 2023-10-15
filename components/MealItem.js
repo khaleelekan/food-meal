@@ -6,7 +6,7 @@ export const MealItem = ({title,image,duration,complexity,affordability}) => {
     <View style={styles.mealItem}>
         <Pressable android_ripple={{color:'#ccc'}}
         style={({pressed}) => pressed? styles.buttonPressed: null}>
-            <View>
+            <View style={styles.imageConatiner}>
             <Image source={{ uri:image }} 
             style={styles.image}/>
         <Text style={styles.title}>{title}</Text>
@@ -36,8 +36,13 @@ const styles = StyleSheet.create({
         overflow:Platform.OS === 'android'? 'hidden' : 'visible'
 
     },
+    imageConatiner:{
+        borderRadius: 8,
+        overflow: 'hidden'
+    },
     image: {
         width: '100%',
+        
         height: 200
     },
     title:{
