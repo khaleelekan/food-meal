@@ -1,11 +1,12 @@
 import {View ,Text, StyleSheet,
     Image, Pressable, Platform} from 'react-native'
 
-export const MealItem = ({title,image,duration,complexity,affordability}) => {
+export const MealItem = ({title,image,duration,complexity,affordability,onPress}) => {
   return (
     <View style={styles.mealItem}>
         <Pressable android_ripple={{color:'#ccc'}}
-        style={({pressed}) => pressed? styles.buttonPressed: null}>
+        style={({pressed}) => pressed? styles.buttonPressed: null}
+        onPress={onPress}>
             <View style={styles.imageConatiner}>
             <Image source={{ uri:image }} 
             style={styles.image}/>
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        
+
         height: 200
     },
     title:{

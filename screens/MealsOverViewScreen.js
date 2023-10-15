@@ -16,7 +16,12 @@ export const MealsOverViewScreen = ({route, navigation}) => {
         affordability: itemData.item.affordability,
         complexity: itemData.item.complexity
       };
-      return (<MealItem {...meals}/>);
+      function pressHandler(){
+        navigation.navigate('meal detail',{
+          mealId: itemData.item.id
+        })
+      }
+      return (<MealItem {...meals} onPress={pressHandler}/>);
     }
     useLayoutEffect(()=>{
       const categoryTitle = CATEGORIES.find((category) =>
