@@ -6,12 +6,19 @@ export const MealsOverViewScreen = ({route}) => {
     const displayMeal = MEALS.filter((mealsItem)=>{
       return mealsItem.categoryIds.indexOf(catId) >= 0;
     })
-    function renderMealItem(itemData){
-      return <MealItem title={itemData.item.title}/>
+
+    function renderMealItem(){
+      const meals = {
+        title: itemData.item.title,
+        imageUrl: itemData.item.imageUrl
+      };
+      return (<MealItem title={meals.title}
+      image={meals.imageUrl}
+      />);
     }
   return (
     <View style={styles.container}>
-        <FlatList keyExtractor={(item)=> item.catId}
+        <FlatList keyExtractor={(item)=> item.id}
         data={displayMeal}
         renderItem={renderMealItem}/>
     </View>
