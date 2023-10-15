@@ -7,14 +7,15 @@ export const MealsOverViewScreen = ({route}) => {
       return mealsItem.categoryIds.indexOf(catId) >= 0;
     })
 
-    function renderMealItem(){
+    function renderMealItem(itemData){
       const meals = {
         title: itemData.item.title,
-        imageUrl: itemData.item.imageUrl
+        imageUrl: itemData.item.imageUrl,
+        duration: itemData.item.duration,
+        affordability: itemData.item.affordability,
+        complexity: itemData.item.complexity
       };
-      return (<MealItem title={meals.title}
-      image={meals.imageUrl}
-      />);
+      return (<MealItem {...meals}/>);
     }
   return (
     <View style={styles.container}>
