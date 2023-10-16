@@ -1,12 +1,14 @@
-import {View, Text, StyleSheet,Image} from 'react-native'
+import {View, Text, StyleSheet,Image,ScrollView} from 'react-native'
 import { MEALS } from '../data/dummy-data'
 import { MealDetails } from '../components/MealDetails'
+import { Subtitle } from '../components/MealDetail/Subtitle'
+import { List } from '../components/MealDetail/List'
 
 export const MealDetailsScreen = ({route}) => {
     const mealId = route.params.mealId
     const selectedMeal = MEALS.find((meal)=> meal.id === mealId)
   return (
-    <View> 
+    <ScrollView style={styles.scrollContainer}> 
       <Image source={{ uri: selectedMeal.imageUrl}}
       style={styles.image}/>
         <Text style={styles.title}>{selectedMeal.title}</Text>
@@ -14,21 +16,22 @@ export const MealDetailsScreen = ({route}) => {
         affordability={selectedMeal.affordability}
         complexity={selectedMeal.complexity}
         textStyle={styles.detailText}/>
-        <View style={styles.subtitleContainer}>
-        <Text style={styles.subtitle}> Ingredients </Text>
+        <View style={styles.listOuterContainer}>
+        <View style={styles.listContainer}>
+        <Subtitle>INGREDIENTS</Subtitle>
+        <List selectedMeal={selectedMeal.ingredients}/>
+        <Subtitle>STEPS</Subtitle>
+       <List selectedMeal={selectedMeal.steps}/>
         </View>
-         {selectedMeal.ingredients.map((ingredient)=>{
-          return  <Text key={ingredient}>{ingredient}</Text>}
-        )}
-       <View style={styles.subtitleContainer}>
-       <Text style={styles.subtitle}> Steps </Text>
-       </View>
-       {selectedMeal.steps.map((step)=>(<Text key={step}>{step}</Text>))}
-    </View>
+        </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer:{
+    marginBottom: 40
+  },
   image:{
     width: '100%',
     height: 350
@@ -43,17 +46,12 @@ const styles = StyleSheet.create({
   detailText:{
     color: 'white'
   },
-  subtitle: {
-    color:'#e2b497',
-    fontSize: 18,
-    fontWeight:'bold',
-    textAlign: "center",
+  listOuterContainer:{
+    alignItems: 'center'
   },
-  subtitleContainer:{
-    padding: 6,
-    marginHorizontal: 24,
-    marginVertical: 4,
-    borderBottomColor: '#e2b497',
-    borderBottomWidth: 2,
+  listContainer:{
+    maxWidth: '80%',
+    alignContent: 'center'
   }
+ 
 })
