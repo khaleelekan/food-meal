@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react'
-import {View, Text, StyleSheet, FlatList} from 'react-native'
+import {View, StyleSheet, FlatList} from 'react-native'
 import { MealItem } from '../components/MealItem'
 import { CATEGORIES, MEALS } from '../data/dummy-data'
 export const MealsOverViewScreen = ({route, navigation}) => {
@@ -17,7 +17,7 @@ export const MealsOverViewScreen = ({route, navigation}) => {
         complexity: itemData.item.complexity
       };
       function pressHandler(){
-        navigation.navigate('meal detail',{
+        navigation.navigate('mealDetail',{
           mealId: itemData.item.id
         })
       }
