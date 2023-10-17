@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { CategoriesScreen } from './screens/CategoriesScreen';
@@ -6,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MealsOverViewScreen } from './screens/MealsOverViewScreen';
 import { MealDetailsScreen } from './screens/MealDetailsScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Favorites } from './components/Favorites';
+import { Favorites } from './screens/Favorites';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -30,7 +31,7 @@ export default function App() {
         contentStyle: { backgroundColor: '#3f2f25'}
       }
       }>
-        <Stack.Screen name='meals'
+        <Stack.Screen name='drawe'
          component={DrawerNavigator} options={{
           title: 'All categories'
          }}/>
