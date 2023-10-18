@@ -3,26 +3,35 @@ import { MEALS } from '../data/dummy-data'
 import { MealDetails } from '../components/MealDetails'
 import { Subtitle } from '../components/MealDetail/Subtitle'
 import { List } from '../components/MealDetail/List'
-import { useLayoutEffect } from 'react'
+import { useContext, useLayoutEffect } from 'react'
 import { Button } from '../components/Button'
+import { FavoritesContext } from '../store/context/favorites-context'
 
 
 
 
 export const MealDetailsScreen = ({route, navigation}) => {
-    const mealId = route.params.mealId
+    const favoriteMealsCtx = useContext(FavoritesContext);
+  const mealId = route.params.mealId
     const selectedMeal = MEALS.find((meal)=> meal.id === mealId)
     
-    function pressHandler(){
-      console.log('you pressed the button')
+    const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
+    function changeFavoriteStatus(){
+      if(changeFavoriteStatus){
+        favoriteMealsCtx.removeFavorites(mealId);
+      }else{
+        favoriteMealsCtx.addFavorites(mealId);
+      }
     }
     useLayoutEffect(()=>{
       navigation.setOptions({
         headerRight: ()=>{
-          return <Button color='yellow' icon='star' onPress={pressHandler}/>
+          return <Button color='yellow'
+           icon={mealIsFavorite ? 'star':'star-outline'} 
+           onPress={changeFavoriteStatus}/>
         }
       })
-    })
+    },[navigation, changeFavoriteStatus])
    
   return (
     <ScrollView style={styles.scrollContainer}> 
