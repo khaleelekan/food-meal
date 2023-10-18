@@ -1,5 +1,5 @@
 import {View, FlatList,StyleSheet} from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 function MealList (){
 function renderMealItem(itemData){
     const meals = {
@@ -13,7 +13,7 @@ function renderMealItem(itemData){
     return (<MealItem {...meals} onPress={pressHandler}/>);
 }
 function pressHandler(){
-    navigation.navigate('mealDetail',{
+    useNavigation.navigate('mealDetail',{
       mealId: itemData.item.id
     })
 }
